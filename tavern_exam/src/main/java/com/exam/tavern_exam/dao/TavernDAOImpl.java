@@ -170,10 +170,6 @@ public class TavernDAOImpl implements TavernDAO {
 
     @Override
     public Validation validation(User user, DrinkMenu drinkMenu) {
-        jdbcTemplate.update("SELECT drink_menu.drink_id, drink_menu.price, drink_menu.is_for_adult, user.user_id, user.money, user.is_adult" +
-                " FROM tavern.drink_menu" +
-                " CROSS JOIN tavern.user" +
-                " WHERE drink_menu.drink_id = ? AND user.user_id = ?" , user.getId(), drinkMenu.getId());
         String sql = "SELECT drink_menu.drink_id, drink_menu.price, drink_menu.is_for_adult, user.user_id, user.money, user.is_adult" +
                 " FROM tavern.drink_menu" +
                 " CROSS JOIN tavern.user" +

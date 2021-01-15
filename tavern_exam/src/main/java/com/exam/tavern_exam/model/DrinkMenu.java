@@ -13,6 +13,10 @@ public class DrinkMenu {
         this.isForAdult = isForAdult;
     }
 
+    public DrinkMenu(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

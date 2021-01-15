@@ -16,6 +16,10 @@ public class User {
         this.money = money;
     }
 
+    public User(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

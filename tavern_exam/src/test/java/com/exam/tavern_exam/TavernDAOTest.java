@@ -2,9 +2,7 @@ package com.exam.tavern_exam;
 
 import com.exam.tavern_exam.dao.TavernDAO;
 import com.exam.tavern_exam.dao.TavernDAOImpl;
-import com.exam.tavern_exam.model.Summary;
-import com.exam.tavern_exam.model.User;
-import com.exam.tavern_exam.model.UserOrders;
+import com.exam.tavern_exam.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,15 +18,13 @@ public class TavernDAOTest {
     public TavernDAO tavernDAO;
 
     @BeforeEach
-    public void setupBeforeEach(){
+    public void setupBeforeEach() {
 
     }
 
 
-
-
     @Test
-    public void testGetUserById(){
+    public void testGetUserById() {
         dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/tavern");
@@ -40,8 +36,9 @@ public class TavernDAOTest {
         System.out.println(user);
         assertNotNull(user);
     }
+
     @Test
-    public void testGetUserOrder(){
+    public void testGetUserOrder() {
         dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/tavern");
@@ -55,7 +52,7 @@ public class TavernDAOTest {
     }
 
     @Test
-    public void testGetUser(){
+    public void testGetUser() {
         dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/tavern");
@@ -69,8 +66,9 @@ public class TavernDAOTest {
 
         assertFalse(list.isEmpty());
     }
+
     @Test
-    public void testSummaryAll(){
+    public void testSummaryAll() {
         dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/tavern");
@@ -83,8 +81,18 @@ public class TavernDAOTest {
 
         assertFalse(list.isEmpty());
     }
-    @Test
-    public void testValidation(){
 
+    @Test
+    public void testValidation() {
+        dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/tavern");
+        dataSource.setUsername("daniel");
+        dataSource.setPassword("Password123/4");
+        tavernDAO = new TavernDAOImpl(dataSource);
+        User user = new User(4);
+        DrinkMenu drinkMenu = new DrinkMenu(90);
+        Validation val = tavernDAO.validation(user, drinkMenu);
+        System.out.println(val);
     }
 }
