@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: daniel
@@ -12,29 +13,36 @@
     <title>Validation to buy </title>
 </head>
 <body>
-<form:form action="valid" method="post" modelAttribute="user">
+<form:form method="post" modelAttribute="validationAttribute" action="valid">
     <table>
-        <form:hidden path="id"/>
         <tr>
-            <td>Name:</td>
-            <td><form:input path="name" /></td>
+            <td>UserId:</td>
+            <td><form:input path="UserId" /></td>
         </tr>
         <tr>
-            <td>Email:</td>
-            <td><form:input path="email" /></td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td><form:input path="address" /></td>
-        </tr>
-        <tr>
-            <td>Telephone:</td>
-            <td><form:input path="telephone" /></td>
+            <td>DrinkId:</td>
+            <td><form:input path="DrinkId" /></td>
         </tr>
         <tr>
             <td colspan="2" align="center"><input type="submit" value="Save"></td>
         </tr>
     </table>
 </form:form>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>UserId</th>
+        <th>ProductId</th>
+        <th>Price</th>
+        <th>Validation</th>
+    </tr>
+    <c:forEach items="${valid}" var = "validation">
+        <tr>
+            <td>validation.userId</td>
+            <td>validation.drinkId</td>
+            <td>validation.price</td>
+            <td>validation.canOrder</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>

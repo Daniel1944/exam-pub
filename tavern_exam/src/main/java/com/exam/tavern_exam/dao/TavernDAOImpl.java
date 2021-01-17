@@ -169,11 +169,11 @@ public class TavernDAOImpl implements TavernDAO {
     }
 
     @Override
-    public Validation validation(User user, DrinkMenu drinkMenu) {
+    public Validation validation(User user, DrinkMenu menu) {
         String sql = "SELECT drink_menu.drink_id, drink_menu.price, drink_menu.is_for_adult, user.user_id, user.money, user.is_adult" +
                 " FROM tavern.drink_menu" +
                 " CROSS JOIN tavern.user" +
-                " WHERE drink_menu.drink_id = " + drinkMenu.getId() +" AND user.user_id = " + user.getId();
+                " WHERE drink_menu.drink_id = " + menu.getId() +" AND user.user_id = " + user.getId();
         ResultSetExtractor<Validation> extractor = new ResultSetExtractor<Validation>() {
             @Override
             public Validation extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -186,9 +186,11 @@ public class TavernDAOImpl implements TavernDAO {
                     boolean isAdult = rs.getBoolean("is_adult");
                     String answer = "";
                     if (price <= money & isAdult || !isForAdult & price <= money){
-                        answer = "Guest can order a drink";
-                    } else{
-                        answer= "Guest can't order";
+                        answer = "The guest can order a drink";
+                    }else if(price > money){
+                        answer= "The guest cannot order because he does not have enough money";
+                    } else {
+                        answer = "The guest cannot order because he is not an adult";
                     }
 
                     return new Validation(userId, drinkId, price, answer);

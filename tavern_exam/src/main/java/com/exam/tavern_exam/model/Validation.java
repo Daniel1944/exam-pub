@@ -13,6 +13,7 @@ public class Validation {
         this.canOrder = canOrder;
     }
 
+
     public int getUserId() {
         return userId;
     }

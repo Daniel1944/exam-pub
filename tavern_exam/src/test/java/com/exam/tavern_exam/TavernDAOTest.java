@@ -90,8 +90,8 @@ public class TavernDAOTest {
         dataSource.setUsername("daniel");
         dataSource.setPassword("Password123/4");
         tavernDAO = new TavernDAOImpl(dataSource);
-        User user = new User(4);
-        DrinkMenu drinkMenu = new DrinkMenu(90);
+        User user = new User(1);
+        DrinkMenu drinkMenu = new DrinkMenu(999);
         Validation val = tavernDAO.validation(user, drinkMenu);
         System.out.println(val);
     }
